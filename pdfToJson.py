@@ -3,6 +3,16 @@ import json
 import os
 
 def pdf_to_json(pdf_file_path, json_file_path):
+    """
+    Convert a PDF file to a JSON file containing the extracted text.
+
+    Args:
+        pdf_file_path (str): The path to the input PDF file.
+        json_file_path (str): The path to the output JSON file.
+
+    Returns:
+        None
+    """
     try:
         # Open the PDF file in binary mode
         with open(pdf_file_path, "rb") as pdf_file:

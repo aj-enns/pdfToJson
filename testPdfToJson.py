@@ -4,6 +4,18 @@ import pytest
 from pdfToJson import pdf_to_json
 
 def test_pdf_to_json(tmp_path):
+    """
+    Test the pdf_to_json function.
+
+    This test verifies that the pdf_to_json function correctly converts a PDF file to a JSON file.
+    It checks if the JSON file is created, and verifies its content to ensure the extracted text is as expected.
+
+    Args:
+        tmp_path (pathlib.Path): A temporary directory provided by pytest for storing the output JSON file.
+
+    Returns:
+        None
+    """
     # Define the path for the input PDF file
     current_dir = os.path.dirname(__file__)
     pdf_file_path = os.path.join(current_dir, "input.pdf")
