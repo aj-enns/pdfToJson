@@ -1,6 +1,11 @@
 import PyPDF2
 import json
 import os
+import logging
+
+# Configure logging
+logging.basicConfig(filename='pdfToJson.log', level=logging.INFO, 
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 def pdf_to_json(pdf_file_path, json_file_path):
     try:
@@ -24,9 +29,15 @@ def pdf_to_json(pdf_file_path, json_file_path):
             with open(json_file_path, "w") as json_file:
                 json.dump(pdf_data, json_file, indent=4)
 
-        print(f"PDF text has been successfully converted to JSON and saved to {json_file_path}")
+        logging.info(f"PDF text has been successfully converted to JSON and saved to {json_file_path}")
+    except FileNotFoundError as e:
+        logging.error(f"File not found: {str(e)}")
+    except PermissionError as e:
+        logging.error(f"Permission error: {str(e)}")
+    except PyPDF2.utils.PdfReadError as e:
+        logging.error(f"PDF read error: {str(e)}")
     except Exception as e:
-        print(f"An error occurred: {str(e)}")
+        logging.error(f"An unexpected error occurred: {str(e)}")
 
 # Usage example:
 current_dir = os.path.dirname(__file__)
